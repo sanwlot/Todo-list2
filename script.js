@@ -14,7 +14,7 @@ function renderTodoList() {
   let htmlElements = "";
   for (let i = 0; i < todoList.length; i++) {
     htmlElements += `
-        <div>${todoList[i].name}</div> 
+        <div class="todo-name">${todoList[i].name}</div> 
         <div class="date">${todoList[i].dueDate}</div>
         <button class="delete-button">Delete</button>
     `;
