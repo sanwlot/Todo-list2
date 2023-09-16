@@ -47,3 +47,8 @@ body {
     padding: 10px 0;
     font-weight: bold;
 }
+
+.done {
+    text-decoration: line-through;
+}
+    
