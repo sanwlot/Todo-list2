@@ -12,6 +12,13 @@ todoInput.addEventListener('keypress', handleKeyPress)
 
 function renderTodoList() {
   let htmlElements = ''
+  // display recently added todos and updated at the top of the list by sorting the list based on createdAt and updatedAt timestamps
+  todoList.sort((a, b) => {
+    if (a.updatedAt !== b.updatedAt) {
+      return b.updatedAt - a.updatedAt // sort by updatedAt first
+    }
+    return b.createdAt - a.createdAt // if updatedAt is the same, sort by createdAt
+  })
   for (let i = 0; i < todoList.length; i++) {
     htmlElements += `
         <input 
@@ -37,12 +44,14 @@ function renderTodoList() {
 }
 
 function toggleComplete(e) {
+  todoList[e.target.dataset.index].updatedAt = Date.now()
   const index = e.target.dataset.index
   todoList[index].isCompleted = !todoList[index].isCompleted
   renderTodoList()
 }
 
 function editTodo(e) {
+  todoList[e.target.dataset.index].updatedAt = Date.now()
   const index = e.target.dataset.index
   const newTodoName = prompt('Edit your todo:', todoList[index].name)
   if (newTodoName !== null && newTodoName.trim() !== '') {
